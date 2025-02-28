@@ -10,13 +10,13 @@
   outputs = { self, nixpkgs, vapoursynth-zip-flake, grav1synth-flake }:
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        vapoursynth-zip-overridden = vapoursynth-zip-flake.packages.x86_64-linux.default.overrideAttrs (oldAttrs: {
-      src = "${vapoursynth-zip-flake}";  # Replace with the desired path
+    vapoursynth-zip-overridden = vapoursynth-zip-flake.packages.x86_64-linux.default.overrideAttrs (oldAttrs: {
+      src = "${vapoursynth-zip-flake}";
     });
     vs = pkgs.vapoursynth.withPlugins [
-          pkgs.vapoursynth-bestsource
-          vapoursynth-zip-flake.packages.x86_64-linux.default
-        ];
+      pkgs.vapoursynth-bestsource
+      vapoursynth-zip-flake.packages.x86_64-linux.default
+    ];
   in {
     devShells.x86_64-linux.default = pkgs.mkShell {
       buildInputs = [

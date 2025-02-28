@@ -21,7 +21,12 @@
     devShells.x86_64-linux.default = pkgs.mkShell {
       buildInputs = [
         pkgs.ffmpeg
-        pkgs.python3
+        (pkgs.python3.withPackages(pypkgs: with pypkgs; [
+          pymediainfo
+          numpy
+          tqdm
+          beautifulsoup4
+        ]))
         vs
         pkgs.av1an
         pkgs.svt-av1-psy

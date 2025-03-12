@@ -18,11 +18,6 @@
     }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      vapoursynth-zip-overridden =
-        vapoursynth-zip-flake.packages.x86_64-linux.default.overrideAttrs
-          (oldAttrs: {
-            src = "${vapoursynth-zip-flake}";
-          });
       vs = pkgs.vapoursynth.withPlugins [
         pkgs.vapoursynth-bestsource
         vapoursynth-zip-flake.packages.x86_64-linux.default

@@ -8,34 +8,46 @@
     descale-flake.url = "path:./vapoursynth-descale";
   };
 
-  outputs = { self, nixpkgs, vapoursynth-zip-flake, grav1synth-flake, descale-flake }:
-  let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    vapoursynth-zip-overridden = vapoursynth-zip-flake.packages.x86_64-linux.default.overrideAttrs (oldAttrs: {
-      src = "${vapoursynth-zip-flake}";
-    });
-    vs = pkgs.vapoursynth.withPlugins [
-      pkgs.vapoursynth-bestsource
-      vapoursynth-zip-flake.packages.x86_64-linux.default
-      descale-flake.packages.x86_64-linux.default
-    ];
-  in {
-    devShells.x86_64-linux.default = pkgs.mkShell {
-      buildInputs = [
-        pkgs.ffmpeg
-        (pkgs.python3.withPackages(pypkgs: with pypkgs; [
-          pymediainfo
-          numpy
-          tqdm
-          beautifulsoup4
-        ]))
-        vs
-        pkgs.av1an
-        pkgs.svt-av1-psy
-        pkgs.mkvtoolnix-cli
-        pkgs.libopusenc
-        grav1synth-flake.packages.x86_64-linux.default
+  outputs =
+    {
+      self,
+      nixpkgs,
+      vapoursynth-zip-flake,
+      grav1synth-flake,
+      descale-flake,
+    }:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      vapoursynth-zip-overridden =
+        vapoursynth-zip-flake.packages.x86_64-linux.default.overrideAttrs
+          (oldAttrs: {
+            src = "${vapoursynth-zip-flake}";
+          });
+      vs = pkgs.vapoursynth.withPlugins [
+        pkgs.vapoursynth-bestsource
+        vapoursynth-zip-flake.packages.x86_64-linux.default
+        descale-flake.packages.x86_64-linux.default
       ];
+    in
+    {
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        buildInputs = [
+          pkgs.ffmpeg
+          (pkgs.python3.withPackages (
+            pypkgs: with pypkgs; [
+              pymediainfo
+              numpy
+              tqdm
+              beautifulsoup4
+            ]
+          ))
+          vs
+          pkgs.av1an
+          pkgs.svt-av1-psy
+          pkgs.mkvtoolnix-cli
+          pkgs.libopusenc
+          grav1synth-flake.packages.x86_64-linux.default
+        ];
+      };
     };
-  };
 }

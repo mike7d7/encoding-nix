@@ -6,6 +6,7 @@
     vapoursynth-zip-flake.url = "github:mike7d7/vapoursynth-zip";
     grav1synth-flake.url = "path:./grav1synth";
     descale-flake.url = "path:./vapoursynth-descale";
+    wnnm-flake.url = "path:./vapoursynth-wnnm";
   };
 
   outputs =
@@ -15,6 +16,7 @@
       vapoursynth-zip-flake,
       grav1synth-flake,
       descale-flake,
+      wnnm-flake,
     }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -22,6 +24,7 @@
         pkgs.vapoursynth-bestsource
         vapoursynth-zip-flake.packages.x86_64-linux.default
         descale-flake.packages.x86_64-linux.default
+        wnnm-flake.packages.x86_64-linux.default
       ];
     in
     {

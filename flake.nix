@@ -45,6 +45,7 @@
           pkgs.mkvtoolnix-cli
           pkgs.libopusenc
           grav1synth-flake.packages.x86_64-linux.default
+          pkgs.vapoursynth-editor
         ];
       };
     };

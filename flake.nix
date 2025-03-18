@@ -7,6 +7,7 @@
     grav1synth-flake.url = "path:./grav1synth";
     descale-flake.url = "path:./vapoursynth-descale";
     wnnm-flake.url = "path:./vapoursynth-wnnm";
+    deband-flake.url = "path:./vapoursynth-neo_f3kdb";
   };
 
   outputs =
@@ -17,6 +18,7 @@
       grav1synth-flake,
       descale-flake,
       wnnm-flake,
+      deband-flake,
     }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -25,6 +27,7 @@
         vapoursynth-zip-flake.packages.x86_64-linux.default
         descale-flake.packages.x86_64-linux.default
         wnnm-flake.packages.x86_64-linux.default
+        deband-flake.packages.x86_64-linux.default
       ];
     in
     {

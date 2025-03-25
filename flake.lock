@@ -224,7 +224,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-UxpGBCQ6WW4QuIx75QOb8TYULpn6Vq+b6ZUe9+lycRI=",
+        "narHash": "sha256-bhKX4CkrEyxs6swJ9xRX0pXwFxAZQKazoa1fvzwsTGc=",
         "path": "./vapoursynth-vs-jetpack",
         "type": "path"
       },

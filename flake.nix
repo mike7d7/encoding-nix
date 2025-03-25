@@ -43,6 +43,7 @@
               numpy
               tqdm
               beautifulsoup4
+              vapoursynth
             ]
           ))
           vs

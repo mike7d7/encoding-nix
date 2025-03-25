@@ -8,6 +8,7 @@
     descale-flake.url = "path:./vapoursynth-descale";
     wnnm-flake.url = "path:./vapoursynth-wnnm";
     deband-flake.url = "path:./vapoursynth-neo_f3kdb";
+    vs-jetpack-flake.url = "path:./vapoursynth-vs-jetpack";
   };
 
   outputs =
@@ -19,6 +20,7 @@
       descale-flake,
       wnnm-flake,
       deband-flake,
+      vs-jetpack-flake,
     }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -28,6 +30,7 @@
         descale-flake.packages.x86_64-linux.default
         wnnm-flake.packages.x86_64-linux.default
         deband-flake.packages.x86_64-linux.default
+        vs-jetpack-flake.packages.x86_64-linux.default
       ];
     in
     {

@@ -50,7 +50,7 @@
           pkgs.av1an
           pkgs.svt-av1-psy
           pkgs.mkvtoolnix-cli
-          pkgs.libopusenc
+          pkgs.opusTools
           grav1synth-flake.packages.x86_64-linux.default
           pkgs.vapoursynth-editor
         ];

@@ -38,8 +38,8 @@
           src = pkgs.fetchFromGitHub {
             owner = "Jaded-Encoding-Thaumaturgy";
             repo = "vs-jetpack";
-            rev = "2be1b4e50377f8066fd58a77a71605d5d4be6059";
-            hash = "sha256-DXqVQnlev5/UsbW+c3xkfWio9aEc17DNtf2v0y/bEho=";
+            rev = "f9aa99b18ebd0019c1d386c5868cfce3f43a1d6c";
+            hash = "sha256-Y11dexbOXIKTZnSDgF2VqEwIRMtYg7IxlWI6nDSZPcw=";
           };
           propagatedBuildInputs = with pkgs.python3Packages; [
             numpy

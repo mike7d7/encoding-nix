@@ -54,6 +54,9 @@
           grav1synth-flake.packages.x86_64-linux.default
           pkgs.vapoursynth-editor
         ];
+        shellHook = ''
+          echo "vapoursynth path = ${pkgs.lib.makeLibraryPath [ vs ]}"
+        '';
       };
     };
 }

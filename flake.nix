@@ -44,6 +44,7 @@
               tqdm
               beautifulsoup4
               vapoursynth
+              psutil
             ]
           ))
           vs

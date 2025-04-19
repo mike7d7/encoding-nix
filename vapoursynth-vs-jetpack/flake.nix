@@ -3,10 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
+    vapoursynth-zip-flake.url = "github:mike7d7/vapoursynth-zip";
   };
 
   outputs =
-    { self, nixpkgs }:
+    {
+      self,
+      nixpkgs,
+      vapoursynth-zip-flake,
+    }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -41,13 +46,16 @@
             rev = "f9aa99b18ebd0019c1d386c5868cfce3f43a1d6c";
             hash = "sha256-Y11dexbOXIKTZnSDgF2VqEwIRMtYg7IxlWI6nDSZPcw=";
           };
-          propagatedBuildInputs = with pkgs.python3Packages; [
-            numpy
-            rich
-            scipy
-            typing-extensions
+          propagatedBuildInputs = with pkgs; [
             vapoursynth
+            vapoursynth-bestsource
+            python3Packages.numpy
+            python3Packages.rich
+            python3Packages.scipy
+            python3Packages.typing-extensions
+            python3Packages.vapoursynth
             jetpytools # Reference the local package
+            vapoursynth-zip-flake.packages.x86_64-linux.default
           ];
         };
 

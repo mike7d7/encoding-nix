@@ -48,7 +48,9 @@
             ]
           ))
           vs
-          pkgs.av1an
+          (pkgs.av1an.override {
+            vapoursynth = vs;
+          })
           pkgs.svt-av1-psy
           pkgs.mkvtoolnix-cli
           pkgs.opusTools
@@ -57,6 +59,7 @@
         ];
         shellHook = ''
           echo "vapoursynth path = ${pkgs.lib.makeLibraryPath [ vs ]}"
+          export VAPOURSYNTH_PLUGIN_PATH="${vs}/lib/vapoursynth"
         '';
       };
     };

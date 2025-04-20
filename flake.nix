@@ -9,6 +9,7 @@
     wnnm-flake.url = "path:./vapoursynth-wnnm";
     deband-flake.url = "path:./vapoursynth-neo_f3kdb";
     vs-jetpack-flake.url = "path:./vapoursynth-vs-jetpack";
+    vs-nlm-flake.url = "path:./vapoursynth-nlm-ispc";
   };
 
   outputs =
@@ -21,6 +22,7 @@
       wnnm-flake,
       deband-flake,
       vs-jetpack-flake,
+      vs-nlm-flake,
     }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -31,6 +33,7 @@
         wnnm-flake.packages.x86_64-linux.default
         deband-flake.packages.x86_64-linux.default
         vs-jetpack-flake.packages.x86_64-linux.default
+        vs-nlm-flake.packages.x86_64-linux.default
       ];
     in
     {

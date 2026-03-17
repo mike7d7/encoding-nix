@@ -18,9 +18,11 @@
     in
     {
       packages.${system} = rec {
-        jetpytools = pkgs.python3Packages.buildPythonPackage rec {
+        jetpytools = pkgs.python3Packages.buildPythonPackage {
+          pyproject = true;
+          build-system = [ pkgs.python3Packages.setuptools ];
           pname = "jetpytools";
-          version = "git";
+          version = "2.2.5";
           doCheck = false;
           propagatedBuildInputs = with pkgs.python3Packages; [
             setuptools
@@ -28,23 +30,32 @@
             mypy
             mypy-extensions
             typing-extensions
+            hatchling
+            versioningit
           ];
           src = pkgs.fetchFromGitHub {
             owner = "Jaded-Encoding-Thaumaturgy";
             repo = "jetpytools";
-            rev = "83d246265bfe64b0160bc3b3e86411cab682cf0b";
-            hash = "sha256-Qx9aGBj5oxdI0KxtSJ2lgNXlkrbLTv98qgMgdXtFF/E=";
+            rev = "v${jetpytools.version}";
+            hash = "sha256-t7VsMwLuMpnZkPy7TEor2KCj1eYdWTuW/4kHGsARL9g=";
           };
         };
 
-        vsjetpack = pkgs.python3Packages.buildPythonPackage rec {
+        vsjetpack = pkgs.python3Packages.buildPythonPackage {
+          pyproject = true;
+          build-system = [ pkgs.python3Packages.setuptools ];
           pname = "vsjetpack";
-          version = "git";
+          version = "1.1.0";
+
+          postPatch = ''
+            substituteInPlace pyproject.toml \
+              --replace-fail "jetpytools~=2.2.1" "jetpytools"
+          '';
           src = pkgs.fetchFromGitHub {
             owner = "Jaded-Encoding-Thaumaturgy";
             repo = "vs-jetpack";
-            rev = "f2c46acd3a81c57354d67595d9446c259372ee7f";
-            hash = "sha256-OKSduSmg4x1PLA6WZ8aHlaDo0mC1K1aWxthZWNr4Ck4=";
+            rev = "v${vsjetpack.version}";
+            hash = "sha256-RoyeFWP7qV6hBehpofgHUMidPTFKZcMqyRYVoe8MvYg=";
           };
           propagatedBuildInputs = with pkgs; [
             vapoursynth
